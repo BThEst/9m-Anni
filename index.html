@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ครบรอบ 9 เดือนของเรา</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="audio/love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="hearts"></div>
+
+  <div class="container">
+    <h1>สุขสันต์วันครบรอบ 9 เดือนนะครับเธอ 💖</h1>
+    <p class="subtitle">ขอบคุณที่อยู่ข้างกันในทุกวันเลยนะะ</p>
+
+    <p id="audio-hint" style="color: #e94f7c; margin-bottom: 20px; display: none;">
+      รักน๊าาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาา
+    </p>
+
+    <div class="gallery">
+      <div class="photo"><img src="images/pic1.jpg" alt="รูป1"></div>
+      <div class="photo"><img src="images/pic2.jpg" alt="รูป2"></div>
+      <div class="photo"><img src="images/pic3.jpg" alt="รูป3"></div>
+      <div class="photo"><img src="images/pic4.jpg" alt="รูป4"></div>
+      <div class="photo"><img src="images/pic5.jpg" alt="รูป5"></div>
+      <div class="photo"><img src="images/pic6.jpg" alt="รูป5"></div>
+    </div>
+
+    <div class="message">
+      <p>ทุกช่วงเวลาที่เราอยู่ด้วยกันนะครับ เธอคือของขวัญที่ดีที่สุดเลยย</p>
+      <p>รักเธอเสมอนะ และจะรักตลอดไปเล๊ยยย 💌</p>
+    </div>
+    
+
+    <footer>9 Months Together — Forever To Go</footer>
+  </div>
+
+  <script>
+    // เอฟเฟกต์หัวใจลอยบนหน้า
+    const heartsContainer = document.querySelector('.hearts'); 
+    
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 5) + 's'; 
+      heart.style.opacity = (Math.random() * 0.5 + 0.3); 
+      heart.style.transform = `scale(${Math.random() * 0.7 + 0.3})`; 
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000); 
+    }, 300);
+
+    // เมื่อคลิกที่ภาพ ให้หัวใจกระจายออก และพยายามเล่นเพลง
+    const photos = document.querySelectorAll('.photo');
+    const audio = document.getElementById("bg-music");
+    const audioHint = document.getElementById("audio-hint");
+
+    photos.forEach(photo => {
+      photo.addEventListener('click', (e) => {
+        // เล่นเพลงเมื่อมีการคลิก
+        if (audio.paused) {
+          audio.play().catch(error => {
+            console.log("Auto-play blocked or error playing:", error);
+            // ถ้ายังเล่นไม่ได้ ให้แสดงข้อความบอกใบ้
+            audioHint.style.display = 'block';
+          });
+        }
+
+        // เอฟเฟกต์หัวใจกระจาย
+        for (let i = 0; i < 12; i++) {
+          const heart = document.createElement('div');
+          heart.className = 'burst-heart';
+          const x = e.offsetX + (Math.random() * 60 - 30);
+          const y = e.offsetY + (Math.random() * 60 - 30);
+          heart.style.left = `${x}px`;
+          heart.style.top = `${y}px`;
+          photo.appendChild(heart);
+          setTimeout(() => heart.remove(), 1000);
+        }
+      });
+    });
+
+    // ตรวจสอบสถานะการเล่นเพลงเมื่อโหลดหน้าเว็บ
+    window.addEventListener("load", function () {
+      audio.play().catch(error => {
+        console.log("Auto-play blocked by browser. Displaying hint.", error);
+        audioHint.style.display = 'block'; // แสดงข้อความแนะนำ
+      });
+    });
+  </script>
+  
+</body>
+</html>

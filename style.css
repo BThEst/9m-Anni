@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Mali', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #fff0f5, #fff9f1);
+  color: #333;
+  padding: 30px;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffffee;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #e94f7c;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .photo {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 16px;
+  }
+  
+  .photo:hover img {
+    transform: scale(1.03);
+  }
+
+.message {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+footer {
+  font-weight: bold;
+  color: #e94f7c;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+/* หัวใจลอย (เปลี่ยนเป็นการโปรยลงมา) */
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; /* อยู่ด้านหลังเนื้อหา */
+    overflow: hidden; /* ตรวจสอบให้แน่ใจว่าหัวใจไม่แสดงเกินขอบเขต */
+  }
+  
+  .heart {
+    position: absolute;
+    width: 20px; /* ปรับขนาดได้ตามต้องการ */
+    height: 20px;
+    background: #ff6b81; /* สีชมพูเริ่มต้น */
+    transform: rotate(45deg);
+    animation: fallAnimation linear infinite; /* เปลี่ยนชื่อคีย์เฟรม */
+    opacity: 0.6;
+  }
+  
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff6b81;
+    border-radius: 50%;
+  }
+  
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+  .heart::after {
+    left: -10px;
+    top: 0;
+  }
+  
+  /* @font-face rule จาก Sarabun หายไปในโค้ดที่ให้มา แต่ Mali อยู่ในกฎ *
+     สันนิษฐานว่าตั้งใจใช้ Mali
+  */
+  @import url('https://fonts.googleapis.com/css2?family=Mali:wght@300;700&display=swap'); /* เพิ่มการนำเข้าฟอนต์ Mali */
+  
+  
+  @keyframes fallAnimation { /* เปลี่ยนชื่อจาก floatUp เพื่อความชัดเจน */
+    0% {
+      transform: translateY(-10%) rotate(45deg); /* เริ่มต้นสูงขึ้นเล็กน้อยและหมุน */
+      opacity: 0;
+    }
+    20% {
+        opacity: 0.8; /* ค่อยๆ ปรากฏ */
+    }
+    100% {
+      transform: translateY(105vh) rotate(500deg); /* ตกลงมาเกิน viewport, หมุนมากขึ้น */
+      opacity: 0;
+    }
+  }
+  
+  /* เก็บสไตล์ .burst-heart ไว้ตามเดิมสำหรับการคลิกรูปภาพ */
+  .burst-heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: burst 1s ease-out forwards;
+    opacity: 0.9;
+    z-index: 5;
+  }
+  
+  .burst-heart::before,
+  .burst-heart::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff4d6d;
+    border-radius: 50%;
+  }
+  
+  .burst-heart::before {
+    top: -5px;
+    left: 0;
+  }
+  
+  .burst-heart::after {
+    left: -5px;
+    top: 0;
+  }
+  
+  @keyframes burst {
+    0% {
+      transform: scale(1) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2) translateY(-40px) rotate(720deg);
+      opacity: 0;
+    }
+  }
